@@ -7,10 +7,10 @@ public class Reservation {
     private Money fee;
     private int audienceCount;
 
-    public Reservation(Customer customer, Screening screening, Money calculatedFee, int audienceCount) {
+    public Reservation(Customer customer, Screening screening, Money fee, int audienceCount) {
         this.customer = customer;
         this.screening = screening;
-        this.fee = calculatedFee;
+        this.fee = fee;
         this.audienceCount = audienceCount;
     }
 }

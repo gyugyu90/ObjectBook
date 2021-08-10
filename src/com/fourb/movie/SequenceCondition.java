@@ -1,6 +1,6 @@
 package com.fourb.movie;
 
-public class SequenceCondition implements DiscountCondition {
+public class SequenceCondition implements IDiscountCondition {
 
     private int sequence;
 

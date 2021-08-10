@@ -3,7 +3,7 @@ package com.fourb.movie;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
-public class PeriodCondition implements DiscountCondition {
+public class PeriodCondition implements IDiscountCondition {
 
     private DayOfWeek dayOfWeek;
     private LocalTime startTime;
@@ -17,8 +17,8 @@ public class PeriodCondition implements DiscountCondition {
 
     @Override
     public boolean isSatisfiedBy(Screening screening) {
-        return screening.getStartTime().getDayOfWeek().equals(dayOfWeek)
-                && startTime.compareTo(screening.getStartTime().toLocalTime()) <= 0
-                && endTime.compareTo(screening.getStartTime().toLocalTime()) >= 0;
+        return screening.getWhenScreened().getDayOfWeek().equals(dayOfWeek)
+                && startTime.compareTo(screening.getWhenScreened().toLocalTime()) <= 0
+                && endTime.compareTo(screening.getWhenScreened().toLocalTime()) >= 0;
     }
 }
