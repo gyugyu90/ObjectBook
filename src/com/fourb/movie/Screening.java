@@ -54,4 +54,10 @@ public class Screening {
     public LocalDateTime getWhenScreened() {
         return whenScreened;
     }
+
+    public Reservation reserve(Customer customer, int audienceCount) {
+        return new Reservation(customer, this, calculateFee(audienceCount), audienceCount);
+    }
+
+
 }
