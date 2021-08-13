@@ -32,4 +32,9 @@ public class DiscountCondition {
 
         return this.sequence == sequence;
     }
+
+    public boolean isSatisfiedBy(Screening screening) {
+        return false; //TODO
+    }
+
 }

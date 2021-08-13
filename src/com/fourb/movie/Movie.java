@@ -78,6 +78,10 @@ public class Movie {
         return fee.minus(discountPolicy.calculateDiscountAmount(screening));
     }
 
+    private boolean isDiscountable(Screening screening) {
+        return discountConditions.stream().anyMatch(c->c.isSatisfiedBy(screening));
+    }
+
     public void setFee(Money fee) {
         this.fee = fee;
     }
