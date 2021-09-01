@@ -10,8 +10,8 @@ public class NightlyDiscountPhone extends Phone {
 
     private Money nightlyAmount;
 
-    public NightlyDiscountPhone(Money nightlyAmount, Money regularAmount, Duration seconds) {
-        super(regularAmount, seconds);
+    public NightlyDiscountPhone(Money nightlyAmount, Money regularAmount, Duration seconds, double taxRate) {
+        super(regularAmount, seconds, taxRate);
         this.nightlyAmount = nightlyAmount;
     }
 
@@ -26,6 +26,6 @@ public class NightlyDiscountPhone extends Phone {
             }
         }
 
-        return result.minus(nightlyAmount);
+        return result.minus(nightlyAmount.plus(nightlyAmount.times(getTaxRate())));
     }
 }
