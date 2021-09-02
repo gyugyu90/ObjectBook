@@ -2,28 +2,24 @@ package com.fourb.phone;
 
 import com.fourb.movie.Money;
 
-import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Phone extends AbstractPhone {
-    private Money amount;
-    protected Duration seconds;
+public abstract class Phone {
 
-    public Phone(Money amount, Duration seconds) {
-        this.amount = amount;
-        this.seconds = seconds;
+    private List<Call> calls = new ArrayList<>();
+
+
+    public Money calculateFee() {
+        Money result = Money.ZERO;
+
+        for(Call call: calls) {
+            result = result.plus(calculateCallFee(call));
+        }
+
+        return result;
     }
 
-    public Money getAmount() {
-        return amount;
-    }
-
-    public Duration getSeconds() {
-        return seconds;
-    }
-
-    @Override
-    protected Money calculateCallFee(Call call) {
-        return amount.times(call.getDuration().getSeconds() / seconds.getSeconds());
-    }
+    protected abstract Money calculateCallFee(Call call);
 
 }
