@@ -4,28 +4,27 @@ import com.fourb.movie.Money;
 
 import java.time.Duration;
 
-public class NightlyDiscountPhone extends Phone {
+public class NightlyDiscountPhone extends AbstractPhone {
 
     private static final int LATE_NIGHT_HOUR = 22;
 
     private Money nightlyAmount;
+    private Money regularAmount;
+    private Duration seconds;
 
-    public NightlyDiscountPhone(Money nightlyAmount, Money regularAmount, Duration seconds, double taxRate) {
-        super(regularAmount, seconds, taxRate);
+    public NightlyDiscountPhone(Money nightlyAmount, Money regularAmount, Duration seconds) {
         this.nightlyAmount = nightlyAmount;
+        this.regularAmount = regularAmount;
+        this.seconds = seconds;
     }
 
     @Override
-    public Money calculateFee() {
-        Money result = super.calculateFee();
+    protected Money calculateCallFee(Call call) {
 
-        Money nightlyAmount = Money.ZERO;
-        for (Call call : calls) {
-            if (call.getFrom().getHour() >= LATE_NIGHT_HOUR) {
-                nightlyAmount = result.plus(nightlyAmount.times(call.getDuration().getSeconds() / seconds.getSeconds()));
-            }
+        if (call.getFrom().getHour() >= LATE_NIGHT_HOUR) {
+            return nightlyAmount.times(call.getDuration().getSeconds() / seconds.getSeconds());
         }
 
-        return result.minus(nightlyAmount.plus(nightlyAmount.times(getTaxRate())));
+        return regularAmount.times(call.getDuration().getSeconds() / seconds.getSeconds());
     }
 }
