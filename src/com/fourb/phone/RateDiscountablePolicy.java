@@ -2,14 +2,11 @@ package com.fourb.phone;
 
 import com.fourb.movie.Money;
 
-import java.time.Duration;
-
-public class RateDiscountableRegularPhone extends RegularPhone {
-
+public class RateDiscountablePolicy extends AdditionalRatePolicy {
     private Money discountAmount;
 
-    public RateDiscountableRegularPhone(Money amount, Duration seconds, Money discountAmount) {
-        super(amount, seconds);
+    public RateDiscountablePolicy(RatePolicy next, Money discountAmount) {
+        super(next);
         this.discountAmount = discountAmount;
     }
 

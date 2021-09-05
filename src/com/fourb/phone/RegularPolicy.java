@@ -4,21 +4,14 @@ import com.fourb.movie.Money;
 
 import java.time.Duration;
 
-public class RegularPhone extends Phone {
-    private Money amount;
-    protected Duration seconds;
+public class RegularPolicy extends BasicRatePolicy {
 
-    public RegularPhone(Money amount, Duration seconds) {
+    private Money amount;
+    private Duration seconds;
+
+    public RegularPolicy(Money amount, Duration seconds) {
         this.amount = amount;
         this.seconds = seconds;
-    }
-
-    public Money getAmount() {
-        return amount;
-    }
-
-    public Duration getSeconds() {
-        return seconds;
     }
 
     @Override
