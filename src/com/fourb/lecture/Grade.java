@@ -1,4 +1,4 @@
-package com.fourb;
+package com.fourb.lecture;
 
 public class Grade {
     private String name;
