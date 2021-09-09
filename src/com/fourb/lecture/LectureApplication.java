@@ -18,5 +18,10 @@ public class LectureApplication {
                 Arrays.asList(81, 95, 75, 50, 45));
 
         System.out.println(lecture2.evaluate());
+
+
+        Professor professor = new Professor("다익스트라", new Lecture("알고리즘", 70, Arrays.asList(81, 95, 75, 50, 45)));
+        String statistics = professor.compileStatistics();
+        System.out.println(statistics);
     }
 }
